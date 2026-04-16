@@ -77,7 +77,7 @@ td{padding:7px 9px;vertical-align:middle}
 <header>
   <div>
     <h1>🚛 Painel de Placas Ociosas</h1>
-    <div class="hdr-info" id="hdrInfo">Gerado em 16/04/2026 10:25 — 2711 registros</div>
+    <div class="hdr-info" id="hdrInfo">Gerado em 16/04/2026 10:27 — 2711 registros</div>
   </div>
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
     <span style="font-size:11px;color:#718096">Referência:</span>
@@ -94,7 +94,7 @@ td{padding:7px 9px;vertical-align:middle}
 <div class="main">
   <div class="stats-row" id="stats"></div>
   <div class="mlp-panel">
-    <h3>&#x1F3C6; Ranking Transportador &mdash; Placas Ociosas (&gt;36h)</h3>
+    <h3>&#x1F3C6; Ranking Transportador &mdash; Placas Ociosas (&ge;24h) Sem Motivo</h3>
     <div id="mlpRank"></div>
   </div>
   <div class="reasons-panel">
@@ -208,7 +208,7 @@ function tagR(r) {
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
 function renderMlpRank() {
-  const base = ALL.filter(r => r.horasNum > 36);
+  const base = ALL.filter(r => r.horasNum >= 24 && !r.razao.trim());
   const cnt = {};
   base.forEach(r => { const k = r.transportador.trim() || '(sem transportador)'; cnt[k] = (cnt[k]||0)+1; });
   const sorted = Object.entries(cnt).sort((a,b) => b[1]-a[1]);
