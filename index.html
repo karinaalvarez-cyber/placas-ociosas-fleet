@@ -77,7 +77,7 @@ td{padding:7px 9px;vertical-align:middle}
 <header>
   <div>
     <h1>🚛 Painel de Placas Ociosas</h1>
-    <div class="hdr-info" id="hdrInfo">Gerado em 16/04/2026 10:15 — 2711 registros</div>
+    <div class="hdr-info" id="hdrInfo">Gerado em 16/04/2026 10:22 — 2711 registros</div>
   </div>
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
     <span style="font-size:11px;color:#718096">Referência:</span>
@@ -299,12 +299,16 @@ function sort(col) {
   doSort(); renderTable();
 }
 function renderStats() {
+  const totalFrota=ALL.length;
+  const total24h=ALL.filter(r=>r.horasNum>=24).length;
   const sm=filtered.filter(r=>!r.razao.trim()).length;
   const exp=filtered.filter(r=>ds(r.dataRetorno)==='exp').length;
   const urg=filtered.filter(r=>['urg','wrn'].includes(ds(r.dataRetorno))).length;
   const crit=filtered.filter(r=>r.horasNum>=168).length;
   const tot=ALL.filter(r=>r.horasNum>36).length;
   document.getElementById('stats').innerHTML=`
+    <div class="sc" style="border-left-color:#b794f4"><div class="v" style="color:#b794f4">${totalFrota}</div><div class="l">&#x1F69B; Total Ociosas VecFleet</div></div>
+    <div class="sc" style="border-left-color:#4fd1c5"><div class="v" style="color:#4fd1c5">${total24h}</div><div class="l">&#x23F0; Ociosas &ge;24h</div></div>
     <div class="sc b"><div class="v">${filtered.length}</div><div class="l">Placas exibidas (>36h)</div></div>
     <div class="sc r"><div class="v">${sm}</div><div class="l">Sem motivo</div></div>
     <div class="sc r"><div class="v">${exp}</div><div class="l">Prazo vencido</div></div>
